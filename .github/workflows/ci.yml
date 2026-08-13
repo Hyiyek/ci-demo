@@ -58,7 +58,7 @@ jobs:
       - name: Login to ECR
         uses: aws-actions/amazon-ecr-login@v2
 
-      # Step 8: Docker 빌드 및 push.
+      # Step 8: Docker 빌드 및 push..
       - name: Build and push Docker image
         run: |
           SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
