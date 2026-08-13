@@ -10,7 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # permissions를 job 내부로 이동해야 OIDC 토큰이 올바르게 부여됩니다!..
     permissions:
       id-token: write
       contents: read
@@ -61,3 +60,13 @@ jobs:
           docker build --platform linux/arm64 -t $IMAGE_URI:$SHORT_SHA .
           docker push $IMAGE_URI:$SHORT_SHA
           echo "✅ Pushed: $IMAGE_URI:$SHORT_SHA"
+
+      # --- 덧붙인 추가 스텝 ---
+      - name: Clean up unused Docker resources
+        if: always()
+        run: docker system prune -af
+
+      - name: Pipeline Completed
+        run: |
+          echo "🎉 CI/CD Pipeline finished successfully!"
+          echo "Pushed Image Tag: $(echo ${{ github.sha }} | cut -c1-7)"
