@@ -61,7 +61,7 @@ jobs:
           docker push $IMAGE_URI:$SHORT_SHA
           echo "✅ Pushed: $IMAGE_URI:$SHORT_SHA"
 
-      # --- 덧붙인 추가 스텝 ---
+      # --- 덧붙인 추가 스텝 ---.
       - name: Clean up unused Docker resources
         if: always()
         run: docker system prune -af
