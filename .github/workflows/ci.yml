@@ -54,7 +54,7 @@ jobs:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
 
-      # Step 7: ECR 로그인
+      # Step 7: ECR 로그인 확인
       - name: Login to ECR
         uses: aws-actions/amazon-ecr-login@v2
 
